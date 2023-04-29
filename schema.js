@@ -59,6 +59,19 @@ const RootQuery = new GraphQLObjectType({
           .then((res) => res.data);
       },
     },
+    searchedResponse: {
+      type: RootType,
+      args: {
+        keywords: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return axios
+          .get(
+            `http://api.mediastack.com/v1/news?access_key=5b8acc5cad5fb26b1e65fe3dcb191565&keywords=${args.keywords}`
+          )
+          .then((res) => res.data);
+      },
+    },
   },
 });
 
